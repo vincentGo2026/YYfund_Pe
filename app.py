@@ -15,7 +15,7 @@ Render 部署服务器 — 服务申万行业估值分析公网版页面 (sw_cha
 import os
 from functools import wraps
 
-from flask import Flask, Response, request, send_from_directory
+from flask import Flask, Response, redirect, request, send_from_directory
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 INDEX_HTML = 'CodeCC/sw_charts_public.html'
@@ -47,7 +47,9 @@ def healthz():
 @app.route('/')
 @requires_auth
 def index():
-    return send_from_directory(BASE_DIR, INDEX_HTML)
+    # 页面相对路径按 /CodeCC/ 基准编写 (../ 指向仓库根, 同级指向 CodeCC/)
+    # 必须重定向到该路径, 否则同级引用会解析到根目录而 404
+    return redirect('/' + INDEX_HTML)
 
 
 @app.route('/<path:p>')
