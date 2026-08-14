@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+env/
+
+# 环境变量与密钥（绝不提交真实密钥）
+.env
+.env.*
+!.env.example
+
+# 临时 / 备份文件
+*.bak
+*.tmp
+*.swp
+*.log
+
+# 编辑器
+.vscode/
+.idea/
+
+# 系统文件
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# 二进制工具（按需单独下载）
+cloudflared.exe
