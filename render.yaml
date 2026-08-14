@@ -1,0 +1,17 @@
+# Render Blueprint — 一键部署申万行业估值分析公网版
+# 在 render.com → New + → Blueprint → 选择本仓库即可导入
+# 首次部署时需在控制台为 AUTH_USER / AUTH_PASS 填入凭据 (sync: false)
+services:
+  - type: web
+    name: yyfund-pe
+    runtime: python
+    plan: free
+    region: singapore
+    healthCheckPath: /healthz
+    buildCommand: ""
+    startCommand: gunicorn app:app --workers 1 --threads 4 --timeout 120
+    envVars:
+      - key: AUTH_USER
+        sync: false
+      - key: AUTH_PASS
+        sync: false
